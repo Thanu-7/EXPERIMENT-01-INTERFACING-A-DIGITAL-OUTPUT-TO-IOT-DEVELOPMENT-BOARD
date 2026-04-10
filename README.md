@@ -99,38 +99,27 @@ With its power-efficient design, built-in LoRaWAN support, and flexible communic
 ## STM 32 CUBE PROGRAM
 
 ```#include "main.h"
-#include "stdbool.h"
-bool IRSENSOR;
-void IRPAIR();
 
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 int main(void)
-{ HAL_Init();
-  SystemClock_Config();
-  MX_GPIO_Init();
-  while (1)
-  {
-	  IRPAIR();
-  }
-}
-void IRPAIR()
 {
-	IRSENSOR=HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_3);
-		if(IRSENSOR==0)
-		{
-			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_SET);
-			HAL_Delay(1000);
-			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_RESET);
-			HAL_Delay(1000);
-		}
-		else
-		{
-			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_RESET);
-			HAL_Delay(1000);
-		}
+    HAL_Init();
+
+    SystemClock_Config();
+
+    MX_GPIO_Init();
+    while (1)
+  {
+	  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_SET);
+	  HAL_Delay(3000);
+	  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_RESET);
+	  HAL_Delay(3000);
+    }
+  
 }
+
+
 
 ```
 
